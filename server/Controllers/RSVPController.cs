@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
@@ -16,18 +17,25 @@ namespace server.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<RSVP>>> GetRSVPs()
+        [Authorize]
+        [HttpGet("myAttendance")]
+        public async Task<ActionResult<IEnumerable<RSVP>>> GetUserAttendance()
         {
-            return await _context.RSVPs.Include(r => r.Event).Include(r => r.User).ToListAsync();
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == "id")?.Value;
+
+            if (!int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized("Invalid user ID.");
+            }
+
+            return await _context.RSVPs.Where(r => r.UserId == userId).ToListAsync();
         }
 
-        [HttpPost]
-        public async Task<ActionResult<RSVP>> CreateRSVP(RSVP rsvp)
+        [Authorize(Roles = "Admin")]
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<RSVP>>> GetAllRSVPs()
         {
-            _context.RSVPs.Add(rsvp);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetRSVPs), new { id = rsvp.Id }, rsvp);
+            return await _context.RSVPs.ToListAsync();
         }
     }
 }

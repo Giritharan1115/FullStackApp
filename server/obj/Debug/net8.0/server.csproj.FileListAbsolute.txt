@@ -5,8 +5,11 @@ D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\server.deps.json
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\server.runtimeconfig.json
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\server.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\server.pdb
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Humanizer.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
@@ -22,6 +25,12 @@ D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.Extensions.Dep
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\Mono.TextTemplating.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\MySqlConnector.dll
@@ -35,6 +44,10 @@ D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.Composition.Conve
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.Composition.Hosting.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.Composition.Runtime.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\System.Text.Json.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -87,6 +100,7 @@ D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\ru\Microsoft.CodeAnalysi
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\EventManagement\FullStackApp\server\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.csproj.AssemblyReference.cache
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.GeneratedMSBuildEditorConfig.editorconfig
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.AssemblyInfoInputs.cache
@@ -94,6 +108,7 @@ D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.AssemblyInfo.cs
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.csproj.CoreCompileInputs.cache
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.MvcApplicationPartsAssemblyInfo.cs
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.MvcApplicationPartsAssemblyInfo.cache
+D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\server.sourcelink.json
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\staticwebassets.build.json
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\staticwebassets.development.json
 D:\EventManagement\FullStackApp\server\obj\Debug\net8.0\staticwebassets\msbuild.server.Microsoft.AspNetCore.StaticWebAssets.props

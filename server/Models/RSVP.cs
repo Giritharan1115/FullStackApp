@@ -8,15 +8,21 @@ namespace server.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("User")]
+        [Required]
         public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
-        [ForeignKey("Event")]
+        [Required]
         public int EventId { get; set; }
+
+        [ForeignKey("EventId")]
         public Event Event { get; set; }
 
         [Required]
         public bool IsAttending { get; set; }
+
+        public int AttendaceMinutes { get; set; }
     }
 }

@@ -19,6 +19,12 @@ namespace server.Models
         [Required]
         public DateTime Date { get; set; }
 
+        [Required]
+        public TimeSpan StartTime { get; set; }
+
+        [Required]
+        public TimeSpan EndTime { get; set; }
+
         [ForeignKey("User")]
         public int OrganizerId { get; set; }
         public User Organizer { get; set; }

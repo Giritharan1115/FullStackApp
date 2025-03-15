@@ -12,7 +12,7 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250314092819_InitialCreate")]
+    [Migration("20250315061321_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,12 +36,18 @@ namespace server.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time(6)");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("OrganizerId")
                         .HasColumnType("int");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time(6)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -61,6 +67,9 @@ namespace server.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttendaceMinutes")
+                        .HasColumnType("int");
 
                     b.Property<int>("EventId")
                         .HasColumnType("int");
@@ -96,7 +105,11 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("longtext");
 

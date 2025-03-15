@@ -33,12 +33,18 @@ namespace server.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time(6)");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("OrganizerId")
                         .HasColumnType("int");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time(6)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -48,7 +54,7 @@ namespace server.Migrations
 
                     b.HasIndex("OrganizerId");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.RSVP", b =>
@@ -58,6 +64,9 @@ namespace server.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttendaceMinutes")
+                        .HasColumnType("int");
 
                     b.Property<int>("EventId")
                         .HasColumnType("int");
@@ -74,7 +83,7 @@ namespace server.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RSVPs");
+                    b.ToTable("RSVPs", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.User", b =>
@@ -93,7 +102,11 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -102,7 +115,7 @@ namespace server.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("server.Models.Event", b =>
