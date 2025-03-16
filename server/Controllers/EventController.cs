@@ -39,7 +39,7 @@ namespace server.Controllers
             var eventToUpdate = await _context.Events.FindAsync(id);
             if (eventToUpdate == null) return NotFound();
 
-            eventToUpdate.Title = updatedEvent.Title;
+            eventToUpdate.Name = updatedEvent.Name;
             eventToUpdate.Location = updatedEvent.Location;
             eventToUpdate.Date = updatedEvent.Date;
             eventToUpdate.StartTime = updatedEvent.StartTime;

@@ -23,22 +23,28 @@ namespace server.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User user)
+        public async Task<IActionResult> Register(RegisterDto registerDto)
         {
-            if (_context.Users.Any(u => u.Email == user.Email))
+            if (_context.Users.Any(u => u.Email == registerDto.Email))
                 return BadRequest("Email already exists.");
 
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
+            var user = new User
+            {
+                Name = registerDto.Name,
+                Email = registerDto.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
+            };
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return Ok(new { message = "User registered successfully!" });
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] User userDto)
+        public IActionResult Login([FromBody] LoginDto loginDto)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Email == userDto.Email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(userDto.PasswordHash, user.PasswordHash))
+            var user = _context.Users.SingleOrDefault(u => u.Email == loginDto.Email);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash))
                 return Unauthorized("Invalid email or password.");
 
             var token = GenerateJwtToken(user);

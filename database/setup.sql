@@ -30,5 +30,3 @@ CREATE TABLE RSVPs (
     FOREIGN KEY (EventId) REFERENCES Events(Id) ON DELETE CASCADE
 );
 
-INSERT INTO Users (Name, Email, PasswordHash, Role) 
-VALUES ('Admin User', 'admin@admin.com', '$2a$11$Pjf2J9oiMZTIyCpoi4QSH.yAm/Vm/tAEu9AOI7j5NOKkj2/7yuvG6', 'Admin');
