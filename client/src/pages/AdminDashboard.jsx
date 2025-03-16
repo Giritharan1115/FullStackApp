@@ -1,100 +1,61 @@
-import { useEffect, useState, useContext } from "react";
-import { getEvents, deleteEvent } from "../services/eventService";
-import { AuthContext } from "../context/AuthContext";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { getEvents, createEvent, deleteEvent } from "../services/eventService";
 
 const AdminDashboard = () => {
   const [events, setEvents] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [rsvps, setRsvps] = useState([]);
-  const { user } = useContext(AuthContext);
+  const [eventData, setEventData] = useState({ name: "", date: "" });
 
   useEffect(() => {
-    if (!user || user.role !== "Admin") return;
+    fetchEvents();
+  }, []);
 
-    const fetchData = async () => {
-      try {
-        const eventsResponse = await getEvents();
-        const usersResponse = await axios.get(
-          "http://localhost:5015/api/users",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        const rsvpsResponse = await axios.get(
-          "http://localhost:5015/api/rsvps/all",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+  const fetchEvents = async () => {
+    const data = await getEvents();
+    setEvents(data);
+  };
 
-        setEvents(eventsResponse.data);
-        setUsers(usersResponse.data);
-        setRsvps(rsvpsResponse.data);
-      } catch (error) {
-        console.error("Error fetching data", error);
-      }
-    };
+  const handleCreateEvent = async () => {
+    await createEvent(eventData);
+    fetchEvents();
+  };
 
-    fetchData();
-  }, [user]);
-
-  const handleDelete = async (id) => {
-    if (!user || user.role !== "Admin")
-      return alert("Only admins can delete events.");
-    await deleteEvent(id, localStorage.getItem("token"));
-    setEvents(events.filter((event) => event.id !== id));
+  const handleDeleteEvent = async (id) => {
+    await deleteEvent(id);
+    fetchEvents();
   };
 
   return (
     <div className="container mt-5">
       <h2>Admin Dashboard</h2>
-      <h4>All Users</h4>
-      <ul className="list-group">
-        {users.map((user) => (
-          <li key={user.id} className="list-group-item">
-            {user.name} - {user.email} ({user.role})
-          </li>
-        ))}
-      </ul>
-
-      <h4 className="mt-4">All Events</h4>
-      <ul className="list-group">
+      <div className="mb-3">
+        <input
+          type="text"
+          placeholder="Event Name"
+          className="form-control"
+          onChange={(e) => setEventData({ ...eventData, name: e.target.value })}
+        />
+        <input
+          type="date"
+          className="form-control mt-2"
+          onChange={(e) => setEventData({ ...eventData, date: e.target.value })}
+        />
+        <button className="btn btn-primary mt-2" onClick={handleCreateEvent}>
+          Create Event
+        </button>
+      </div>
+      <ul className="list-group mt-3">
         {events.map((event) => (
           <li
             key={event.id}
-            className="list-group-item d-flex justify-content-between align-items-center"
+            className="list-group-item d-flex justify-content-between"
           >
-            {event.name} - {event.location}
-            <div>
-              <Link
-                className="btn btn-warning me-2"
-                to={`/edit-event/${event.id}`}
-              >
-                Edit
-              </Link>
-              <button
-                className="btn btn-danger"
-                onClick={() => handleDelete(event.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      <h4 className="mt-4">RSVP Attendance</h4>
-      <ul className="list-group">
-        {rsvps.map((rsvp) => (
-          <li key={rsvp.id} className="list-group-item">
-            User ID: {rsvp.userId} - Event ID: {rsvp.eventId} - Minutes
-            Attended: {rsvp.attendanceMinutes}
+            {event.name} - {event.date}
+            <button
+              className="btn btn-danger"
+              onClick={() => handleDeleteEvent(event.id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>

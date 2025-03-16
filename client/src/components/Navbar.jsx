@@ -6,39 +6,49 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <nav className="navbar navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          Event App
+          EventApp
         </Link>
-        <div>
-          {user ? (
-            <>
-              <Link className="btn btn-light me-2" to="/events">
-                Events
-              </Link>
-              <Link className="btn btn-warning me-2" to="/rsvp">
-                RSVP
-              </Link>
-              {user.role === "Admin" && (
-                <Link className="btn btn-info me-2" to="/admin">
-                  Admin
-                </Link>
-              )}
-              <button className="btn btn-danger" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-light me-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-success" to="/register">
-                Register
-              </Link>
-            </>
-          )}
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav ms-auto">
+            {!user ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">
+                    Register
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                {user.role === "Admin" ? (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/dashboard">
+                      Admin Dashboard
+                    </Link>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/dashboard">
+                      User Dashboard
+                    </Link>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <button className="btn btn-danger" onClick={logout}>
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
       </div>
     </nav>
