@@ -1,12 +1,13 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import { registerUser } from "../services/authService";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    passwordHash: "",
+    password: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,22 +16,22 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(formData);
-      alert("User registered successfully!");
+      const response = await registerUser(formData);
+      console.log("Registration Successful:", response.data);
     } catch (error) {
-      alert("Error registering user");
+      setError(error.response?.data?.message || "Registration failed");
     }
   };
 
   return (
-    <div className="container mt-5">
+    <div>
       <h2>Register</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
           placeholder="Name"
-          className="form-control mb-2"
           onChange={handleChange}
           required
         />
@@ -38,21 +39,17 @@ const Register = () => {
           type="email"
           name="email"
           placeholder="Email"
-          className="form-control mb-2"
           onChange={handleChange}
           required
         />
         <input
           type="password"
-          name="passwordHash"
+          name="password"
           placeholder="Password"
-          className="form-control mb-2"
           onChange={handleChange}
           required
         />
-        <button type="submit" className="btn btn-success">
-          Register
-        </button>
+        <button type="submit">Register</button>
       </form>
     </div>
   );

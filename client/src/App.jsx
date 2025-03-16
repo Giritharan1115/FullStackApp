@@ -7,6 +7,7 @@ import Events from "./pages/Events";
 import RSVP from "./pages/RSVP";
 import EditEvent from "./pages/EditEvent";
 import AdminDashboard from "./pages/AdminDashboard";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/events" element={<Events />} />
